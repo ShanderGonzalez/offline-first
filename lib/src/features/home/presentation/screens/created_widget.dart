@@ -26,10 +26,19 @@ class CreatedWidget extends StatelessWidget {
             CustomButton(
               label: 'Crear',
               onPressed: () {
-                partnerProvider.createPartner(_nameController.text);
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Partner Creado')),
-                );
+                int isExist =
+                    partnerProvider.createPartner(_nameController.text);
+                if (isExist == -1) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                        content: Text('Ya existe un partner con ese nombre')),
+                  );
+                  return;
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Partner Creado')),
+                  );
+                }
               },
             ),
           ],

@@ -21,9 +21,10 @@ class ResPartnerProvider with ChangeNotifier {
     _printSyncState();
   }
 
-  void createPartner(String name) {
-    _repository.createPartner(name);
-    fetchPartners();
+  int createPartner(String name) {
+    int isExist = _repository.createPartner(name);
+    isExist != -1 ? fetchPartners() : null;
+    return isExist;
   }
 
   void checkIn(int id) {

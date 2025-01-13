@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import '../../../../../main.dart';
 import '../../domain/data/objectbox.g.dart';
 import '../../domain/entities/res_partner_model.dart';
@@ -22,6 +24,17 @@ class ResPartnerRepositoryObjectBox implements ResPartnerRepository {
 
   @override
   int createPartner(String name) {
+    // Verificar si ya existe un registro con el mismo nombre
+    final existingPartner = partnerBox
+        .query(ResPartnerModel_.name.equals(name))
+        .build()
+        .findFirst();
+
+    if (existingPartner != null) {
+      log('Ya existe un partner con el nombre $name');
+      return -1;
+    }
+
     final partner = ResPartnerModel(name: name, activeIn: false);
     final partnerId = partnerBox.put(partner);
 

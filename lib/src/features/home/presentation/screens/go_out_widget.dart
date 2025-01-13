@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,6 +18,7 @@ class GoOutWidget extends StatefulWidget {
 
 class _GoOutWidgetState extends State<GoOutWidget> {
   late final TextEditingController _nameController = TextEditingController();
+
   DateTime? lastCheckIn;
 
   @override
@@ -50,18 +53,21 @@ class _GoOutWidgetState extends State<GoOutWidget> {
                       lastCheckIn = latestPartner.lastIn;
                     });
 
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                          content: Text(
-                              'Partner encontrado: ${latestPartner.name}')),
-                    );
+                    if (mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('✅ Partner encontrado')),
+                      );
+                    }
                   } else {
                     setState(() {
                       lastCheckIn = null;
                     });
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Partner no encontrado')),
-                    );
+                    if (mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content: Text('❌ Partner no encontrado')),
+                      );
+                    }
                   }
                 },
               ),
@@ -77,17 +83,18 @@ class _GoOutWidgetState extends State<GoOutWidget> {
 
                 if (partner.id != 0 && partner.activeIn) {
                   partnerProvider.checkOut(partner.id);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                        content:
-                            Text('Salida registrada para ${partner.name}')),
-                  );
+                  if (mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('✅ Salida exitosa')),
+                    );
+                  }
                   Navigator.pop(context);
                 } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                        content: Text('El partner no está activo o no existe')),
-                  );
+                  if (mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('❌ Partner no encontrado')),
+                    );
+                  }
                 }
               },
             ),
@@ -98,7 +105,7 @@ class _GoOutWidgetState extends State<GoOutWidget> {
             SizedBox(height: 20),
             CustomButton(
               label: 'Sincronizar',
-              onPressed: () {
+              onPressed: () async {
                 partnerProvider.removeSyncState();
               },
             ),
