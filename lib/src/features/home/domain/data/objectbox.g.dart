@@ -16,38 +16,39 @@ import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
 import '../entities/res_partner_model.dart';
 import '../entities/res_partner_timestamp_model.dart';
+import '../entities/sync_state_model.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
 final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
-      id: const obx_int.IdUid(1, 5031648566663712555),
+      id: const obx_int.IdUid(1, 3068088606164259751),
       name: 'ResPartnerModel',
-      lastPropertyId: const obx_int.IdUid(5, 1459184061999199591),
+      lastPropertyId: const obx_int.IdUid(5, 9206210048643133676),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 5864443138131802018),
+            id: const obx_int.IdUid(1, 689726166903021692),
             name: 'id',
             type: 6,
             flags: 1),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 379752608038182084),
+            id: const obx_int.IdUid(2, 4250131683712799380),
             name: 'name',
             type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(3, 6332952760668093474),
+            id: const obx_int.IdUid(3, 6115429416324625825),
             name: 'lastIn',
             type: 10,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(4, 5531551119946156695),
+            id: const obx_int.IdUid(4, 6653571628604537884),
             name: 'lastOut',
             type: 10,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(5, 1459184061999199591),
+            id: const obx_int.IdUid(5, 9206210048643133676),
             name: 'activeIn',
             type: 1,
             flags: 0)
@@ -55,29 +56,78 @@ final _entities = <obx_int.ModelEntity>[
       relations: <obx_int.ModelRelation>[],
       backlinks: <obx_int.ModelBacklink>[]),
   obx_int.ModelEntity(
-      id: const obx_int.IdUid(2, 6615946011847114492),
+      id: const obx_int.IdUid(2, 1622110728989300788),
       name: 'ResPartnerTimestamp',
-      lastPropertyId: const obx_int.IdUid(4, 4148338265039377923),
+      lastPropertyId: const obx_int.IdUid(4, 2038238409336162468),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 7504706214384462083),
+            id: const obx_int.IdUid(1, 2980017360315168711),
             name: 'id',
             type: 6,
             flags: 1),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 2233739877414108838),
+            id: const obx_int.IdUid(2, 4068329555015703811),
             name: 'partnerId',
             type: 6,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(3, 73611442833627602),
+            id: const obx_int.IdUid(3, 4774746738013141130),
             name: 'timestamp',
             type: 10,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(4, 4148338265039377923),
+            id: const obx_int.IdUid(4, 2038238409336162468),
             name: 'type',
+            type: 9,
+            flags: 0)
+      ],
+      relations: <obx_int.ModelRelation>[],
+      backlinks: <obx_int.ModelBacklink>[]),
+  obx_int.ModelEntity(
+      id: const obx_int.IdUid(3, 8610826752111414850),
+      name: 'ResSyncState',
+      lastPropertyId: const obx_int.IdUid(8, 5639812497646401120),
+      flags: 0,
+      properties: <obx_int.ModelProperty>[
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(1, 8811747981786747386),
+            name: 'id',
+            type: 6,
+            flags: 1),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(2, 6056514722606857602),
+            name: 'resModel',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(3, 7004020022500402821),
+            name: 'resId',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(4, 530995412278352640),
+            name: 'sync',
+            type: 1,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(5, 3989125851539439140),
+            name: 'action',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(6, 2709732786744954801),
+            name: 'updateDate',
+            type: 10,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(7, 1696846145901159635),
+            name: 'syncDate',
+            type: 10,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(8, 5639812497646401120),
+            name: 'changesJson',
             type: 9,
             flags: 0)
       ],
@@ -120,7 +170,7 @@ Future<obx.Store> openStore(
 obx_int.ModelDefinition getObjectBoxModel() {
   final model = obx_int.ModelInfo(
       entities: _entities,
-      lastEntityId: const obx_int.IdUid(2, 6615946011847114492),
+      lastEntityId: const obx_int.IdUid(3, 8610826752111414850),
       lastIndexId: const obx_int.IdUid(0, 0),
       lastRelationId: const obx_int.IdUid(0, 0),
       lastSequenceId: const obx_int.IdUid(0, 0),
@@ -216,6 +266,61 @@ obx_int.ModelDefinition getObjectBoxModel() {
               type: typeParam);
 
           return object;
+        }),
+    ResSyncState: obx_int.EntityDefinition<ResSyncState>(
+        model: _entities[2],
+        toOneRelations: (ResSyncState object) => [],
+        toManyRelations: (ResSyncState object) => {},
+        getId: (ResSyncState object) => object.id,
+        setId: (ResSyncState object, int id) {
+          object.id = id;
+        },
+        objectToFB: (ResSyncState object, fb.Builder fbb) {
+          final resModelOffset = fbb.writeString(object.resModel);
+          final resIdOffset = fbb.writeString(object.resId);
+          final actionOffset = fbb.writeString(object.action);
+          final changesJsonOffset = fbb.writeString(object.changesJson);
+          fbb.startTable(9);
+          fbb.addInt64(0, object.id);
+          fbb.addOffset(1, resModelOffset);
+          fbb.addOffset(2, resIdOffset);
+          fbb.addBool(3, object.sync);
+          fbb.addOffset(4, actionOffset);
+          fbb.addInt64(5, object.updateDate.millisecondsSinceEpoch);
+          fbb.addInt64(6, object.syncDate.millisecondsSinceEpoch);
+          fbb.addOffset(7, changesJsonOffset);
+          fbb.finish(fbb.endTable());
+          return object.id;
+        },
+        objectFromFB: (obx.Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+          final idParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
+          final resModelParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 6, '');
+          final resIdParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 8, '');
+          final syncParam =
+              const fb.BoolReader().vTableGet(buffer, rootOffset, 10, false);
+          final actionParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 12, '');
+          final updateDateParam = DateTime.fromMillisecondsSinceEpoch(
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 14, 0));
+          final syncDateParam = DateTime.fromMillisecondsSinceEpoch(
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 16, 0));
+          final object = ResSyncState(
+              id: idParam,
+              resModel: resModelParam,
+              resId: resIdParam,
+              sync: syncParam,
+              action: actionParam,
+              updateDate: updateDateParam,
+              syncDate: syncDateParam)
+            ..changesJson = const fb.StringReader(asciiOptimization: true)
+                .vTableGet(buffer, rootOffset, 18, '');
+
+          return object;
         })
   };
 
@@ -262,4 +367,39 @@ class ResPartnerTimestamp_ {
   /// See [ResPartnerTimestamp.type].
   static final type =
       obx.QueryStringProperty<ResPartnerTimestamp>(_entities[1].properties[3]);
+}
+
+/// [ResSyncState] entity fields to define ObjectBox queries.
+class ResSyncState_ {
+  /// See [ResSyncState.id].
+  static final id =
+      obx.QueryIntegerProperty<ResSyncState>(_entities[2].properties[0]);
+
+  /// See [ResSyncState.resModel].
+  static final resModel =
+      obx.QueryStringProperty<ResSyncState>(_entities[2].properties[1]);
+
+  /// See [ResSyncState.resId].
+  static final resId =
+      obx.QueryStringProperty<ResSyncState>(_entities[2].properties[2]);
+
+  /// See [ResSyncState.sync].
+  static final sync =
+      obx.QueryBooleanProperty<ResSyncState>(_entities[2].properties[3]);
+
+  /// See [ResSyncState.action].
+  static final action =
+      obx.QueryStringProperty<ResSyncState>(_entities[2].properties[4]);
+
+  /// See [ResSyncState.updateDate].
+  static final updateDate =
+      obx.QueryDateProperty<ResSyncState>(_entities[2].properties[5]);
+
+  /// See [ResSyncState.syncDate].
+  static final syncDate =
+      obx.QueryDateProperty<ResSyncState>(_entities[2].properties[6]);
+
+  /// See [ResSyncState.changesJson].
+  static final changesJson =
+      obx.QueryStringProperty<ResSyncState>(_entities[2].properties[7]);
 }

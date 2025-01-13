@@ -4,33 +4,33 @@
   "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
   "entities": [
     {
-      "id": "1:5031648566663712555",
-      "lastPropertyId": "5:1459184061999199591",
+      "id": "1:3068088606164259751",
+      "lastPropertyId": "5:9206210048643133676",
       "name": "ResPartnerModel",
       "properties": [
         {
-          "id": "1:5864443138131802018",
+          "id": "1:689726166903021692",
           "name": "id",
           "type": 6,
           "flags": 1
         },
         {
-          "id": "2:379752608038182084",
+          "id": "2:4250131683712799380",
           "name": "name",
           "type": 9
         },
         {
-          "id": "3:6332952760668093474",
+          "id": "3:6115429416324625825",
           "name": "lastIn",
           "type": 10
         },
         {
-          "id": "4:5531551119946156695",
+          "id": "4:6653571628604537884",
           "name": "lastOut",
           "type": 10
         },
         {
-          "id": "5:1459184061999199591",
+          "id": "5:9206210048643133676",
           "name": "activeIn",
           "type": 1
         }
@@ -38,36 +38,85 @@
       "relations": []
     },
     {
-      "id": "2:6615946011847114492",
-      "lastPropertyId": "4:4148338265039377923",
+      "id": "2:1622110728989300788",
+      "lastPropertyId": "4:2038238409336162468",
       "name": "ResPartnerTimestamp",
       "properties": [
         {
-          "id": "1:7504706214384462083",
+          "id": "1:2980017360315168711",
           "name": "id",
           "type": 6,
           "flags": 1
         },
         {
-          "id": "2:2233739877414108838",
+          "id": "2:4068329555015703811",
           "name": "partnerId",
           "type": 6
         },
         {
-          "id": "3:73611442833627602",
+          "id": "3:4774746738013141130",
           "name": "timestamp",
           "type": 10
         },
         {
-          "id": "4:4148338265039377923",
+          "id": "4:2038238409336162468",
           "name": "type",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "3:8610826752111414850",
+      "lastPropertyId": "8:5639812497646401120",
+      "name": "ResSyncState",
+      "properties": [
+        {
+          "id": "1:8811747981786747386",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:6056514722606857602",
+          "name": "resModel",
+          "type": 9
+        },
+        {
+          "id": "3:7004020022500402821",
+          "name": "resId",
+          "type": 9
+        },
+        {
+          "id": "4:530995412278352640",
+          "name": "sync",
+          "type": 1
+        },
+        {
+          "id": "5:3989125851539439140",
+          "name": "action",
+          "type": 9
+        },
+        {
+          "id": "6:2709732786744954801",
+          "name": "updateDate",
+          "type": 10
+        },
+        {
+          "id": "7:1696846145901159635",
+          "name": "syncDate",
+          "type": 10
+        },
+        {
+          "id": "8:5639812497646401120",
+          "name": "changesJson",
           "type": 9
         }
       ],
       "relations": []
     }
   ],
-  "lastEntityId": "2:6615946011847114492",
+  "lastEntityId": "3:8610826752111414850",
   "lastIndexId": "0:0",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",

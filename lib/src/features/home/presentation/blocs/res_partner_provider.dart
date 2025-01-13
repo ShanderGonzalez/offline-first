@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../data/repositories/res_partner_repository.dart';
 import '../../domain/entities/res_partner_model.dart';
 import '../../domain/entities/res_partner_timestamp_model.dart';
+import '../../domain/entities/sync_state_model.dart';
 
 class ResPartnerProvider with ChangeNotifier {
   final ResPartnerRepository _repository;
@@ -17,6 +18,7 @@ class ResPartnerProvider with ChangeNotifier {
     _partners = _repository.getAllPartners();
     notifyListeners();
     _printDatabase();
+    _printSyncState();
   }
 
   void createPartner(String name) {
@@ -43,6 +45,11 @@ class ResPartnerProvider with ChangeNotifier {
     fetchPartners();
   }
 
+  void removeSyncState() {
+    _repository.removeSyncState();
+    fetchPartners();
+  }
+
   void _printDatabase() {
     log('=========== BASE DE DATOS ===========');
     for (var partner in _partners) {
@@ -59,5 +66,21 @@ class ResPartnerProvider with ChangeNotifier {
       }
     }
     log('======================================');
+  }
+
+  void _printSyncState() {
+    final List<ResSyncState> syncStates = _repository.getAllSyncStates();
+    log('=========== SYNC STATE ===========');
+    for (var syncState in syncStates) {
+      log('ID: ${syncState.id}');
+      log('Modelo: ${syncState.resModel}');
+      log('Recurso ID: ${syncState.resId}');
+      log('Sincronizado: ${syncState.sync}');
+      log('Acción: ${syncState.action}');
+      log('Fecha Actualización: ${syncState.updateDate}');
+      log('Fecha Sincronización: ${syncState.syncDate}');
+      log('Cambios: ${syncState.changesJson}');
+    }
+    log('==================================');
   }
 }

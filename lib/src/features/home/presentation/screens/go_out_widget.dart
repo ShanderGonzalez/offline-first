@@ -95,6 +95,13 @@ class _GoOutWidgetState extends State<GoOutWidget> {
             Text(lastCheckIn != null
                 ? 'Último ingreso: $lastCheckIn'
                 : 'Último ingreso no registrado'),
+            SizedBox(height: 20),
+            CustomButton(
+              label: 'Sincronizar',
+              onPressed: () {
+                partnerProvider.removeSyncState();
+              },
+            ),
           ],
         ),
       ),
