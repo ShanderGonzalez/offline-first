@@ -1,0 +1,29 @@
+name: offline_first
+description: "Offline First App with Supabase and ObjectBox"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  supabase_flutter: ^2.8.3
+  provider: ^6.1.2
+  objectbox: ^4.0.3
+  objectbox_flutter_libs: any
+  path: ^1.8.3
+  path_provider: ^2.1.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  build_runner: ^2.4.14
+  objectbox_generator: any
+
+flutter:
+  uses-material-design: true
