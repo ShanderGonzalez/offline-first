@@ -115,7 +115,7 @@ class _GoOutWidgetState extends State<GoOutWidget> {
                   try {
                     if (connectionProvider.isConnected) {
                       await syncService.syncToSupabase();
-
+                      await syncService.syncFromSupabase();
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                             content: Text('✅ Sincronización completada.')),
