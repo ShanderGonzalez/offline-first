@@ -4,6 +4,8 @@ import 'package:objectbox/objectbox.dart';
 class ResPartnerModel {
   @Id()
   int id = 0;
+  @Index()
+  String uuid;
   String name;
   @Property(type: PropertyType.date)
   DateTime? lastIn;
@@ -12,7 +14,8 @@ class ResPartnerModel {
   bool activeIn;
 
   ResPartnerModel({
-    this.id = 0,
+    this.id = 0, 
+    required this.uuid,
     required this.name,
     this.lastIn,
     this.lastOut,

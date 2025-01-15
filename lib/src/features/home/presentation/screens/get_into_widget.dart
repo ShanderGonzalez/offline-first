@@ -73,7 +73,8 @@ class _GetIntoWidgetState extends State<GetIntoWidget> {
               onPressed: () {
                 final partner = partnerProvider.partners.firstWhere(
                   (p) => p.name == _nameController.text,
-                  orElse: () => ResPartnerModel(name: '', activeIn: false),
+                  orElse: () =>
+                      ResPartnerModel(uuid: '', name: '', activeIn: false),
                 );
 
                 if (partner.id != 0) {

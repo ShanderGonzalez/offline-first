@@ -22,33 +22,39 @@ export 'package:objectbox/objectbox.dart'; // so that callers only have to impor
 
 final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
-      id: const obx_int.IdUid(1, 3068088606164259751),
+      id: const obx_int.IdUid(1, 4715259965584809057),
       name: 'ResPartnerModel',
-      lastPropertyId: const obx_int.IdUid(5, 9206210048643133676),
+      lastPropertyId: const obx_int.IdUid(6, 4468306379197946798),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 689726166903021692),
+            id: const obx_int.IdUid(1, 955344430201861180),
             name: 'id',
             type: 6,
             flags: 1),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 4250131683712799380),
+            id: const obx_int.IdUid(2, 6089756004787859990),
+            name: 'uuid',
+            type: 9,
+            flags: 2048,
+            indexId: const obx_int.IdUid(1, 6452324792105080591)),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(3, 3185175311369659969),
             name: 'name',
             type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(3, 6115429416324625825),
+            id: const obx_int.IdUid(4, 5104884190215220536),
             name: 'lastIn',
             type: 10,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(4, 6653571628604537884),
+            id: const obx_int.IdUid(5, 7568660398319187019),
             name: 'lastOut',
             type: 10,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(5, 9206210048643133676),
+            id: const obx_int.IdUid(6, 4468306379197946798),
             name: 'activeIn',
             type: 1,
             flags: 0)
@@ -56,28 +62,34 @@ final _entities = <obx_int.ModelEntity>[
       relations: <obx_int.ModelRelation>[],
       backlinks: <obx_int.ModelBacklink>[]),
   obx_int.ModelEntity(
-      id: const obx_int.IdUid(2, 1622110728989300788),
+      id: const obx_int.IdUid(2, 5089012186243122046),
       name: 'ResPartnerTimestamp',
-      lastPropertyId: const obx_int.IdUid(4, 2038238409336162468),
+      lastPropertyId: const obx_int.IdUid(5, 6528238436083052548),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 2980017360315168711),
+            id: const obx_int.IdUid(1, 7588978149630764835),
             name: 'id',
             type: 6,
             flags: 1),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 4068329555015703811),
+            id: const obx_int.IdUid(2, 2084126872140659331),
+            name: 'uuid',
+            type: 9,
+            flags: 2048,
+            indexId: const obx_int.IdUid(2, 2474319662255764460)),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(3, 2668477448363291803),
             name: 'partnerId',
-            type: 6,
+            type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(3, 4774746738013141130),
+            id: const obx_int.IdUid(4, 4793342792438017874),
             name: 'timestamp',
             type: 10,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(4, 2038238409336162468),
+            id: const obx_int.IdUid(5, 6528238436083052548),
             name: 'type',
             type: 9,
             flags: 0)
@@ -85,48 +97,48 @@ final _entities = <obx_int.ModelEntity>[
       relations: <obx_int.ModelRelation>[],
       backlinks: <obx_int.ModelBacklink>[]),
   obx_int.ModelEntity(
-      id: const obx_int.IdUid(3, 8610826752111414850),
+      id: const obx_int.IdUid(3, 478878154904724081),
       name: 'ResSyncState',
-      lastPropertyId: const obx_int.IdUid(8, 5639812497646401120),
+      lastPropertyId: const obx_int.IdUid(8, 3202055172446252465),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 8811747981786747386),
+            id: const obx_int.IdUid(1, 1197153468798159247),
             name: 'id',
             type: 6,
             flags: 1),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 6056514722606857602),
+            id: const obx_int.IdUid(2, 1048262380700063060),
             name: 'resModel',
             type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(3, 7004020022500402821),
+            id: const obx_int.IdUid(3, 8808944687595537443),
             name: 'resId',
             type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(4, 530995412278352640),
+            id: const obx_int.IdUid(4, 2292561684385408955),
             name: 'sync',
             type: 1,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(5, 3989125851539439140),
+            id: const obx_int.IdUid(5, 9206314246788878437),
             name: 'action',
             type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(6, 2709732786744954801),
+            id: const obx_int.IdUid(6, 3516514165805939125),
             name: 'updateDate',
             type: 10,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(7, 1696846145901159635),
+            id: const obx_int.IdUid(7, 4147332401959054286),
             name: 'syncDate',
             type: 10,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(8, 5639812497646401120),
+            id: const obx_int.IdUid(8, 3202055172446252465),
             name: 'changesJson',
             type: 9,
             flags: 0)
@@ -170,8 +182,8 @@ Future<obx.Store> openStore(
 obx_int.ModelDefinition getObjectBoxModel() {
   final model = obx_int.ModelInfo(
       entities: _entities,
-      lastEntityId: const obx_int.IdUid(3, 8610826752111414850),
-      lastIndexId: const obx_int.IdUid(0, 0),
+      lastEntityId: const obx_int.IdUid(3, 478878154904724081),
+      lastIndexId: const obx_int.IdUid(2, 2474319662255764460),
       lastRelationId: const obx_int.IdUid(0, 0),
       lastSequenceId: const obx_int.IdUid(0, 0),
       retiredEntityUids: const [],
@@ -192,13 +204,15 @@ obx_int.ModelDefinition getObjectBoxModel() {
           object.id = id;
         },
         objectToFB: (ResPartnerModel object, fb.Builder fbb) {
+          final uuidOffset = fbb.writeString(object.uuid);
           final nameOffset = fbb.writeString(object.name);
-          fbb.startTable(6);
+          fbb.startTable(7);
           fbb.addInt64(0, object.id);
-          fbb.addOffset(1, nameOffset);
-          fbb.addInt64(2, object.lastIn?.millisecondsSinceEpoch);
-          fbb.addInt64(3, object.lastOut?.millisecondsSinceEpoch);
-          fbb.addBool(4, object.activeIn);
+          fbb.addOffset(1, uuidOffset);
+          fbb.addOffset(2, nameOffset);
+          fbb.addInt64(3, object.lastIn?.millisecondsSinceEpoch);
+          fbb.addInt64(4, object.lastOut?.millisecondsSinceEpoch);
+          fbb.addBool(5, object.activeIn);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -206,13 +220,15 @@ obx_int.ModelDefinition getObjectBoxModel() {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
           final lastInValue =
-              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 8);
-          final lastOutValue =
               const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 10);
+          final lastOutValue =
+              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 12);
           final idParam =
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
-          final nameParam = const fb.StringReader(asciiOptimization: true)
+          final uuidParam = const fb.StringReader(asciiOptimization: true)
               .vTableGet(buffer, rootOffset, 6, '');
+          final nameParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 8, '');
           final lastInParam = lastInValue == null
               ? null
               : DateTime.fromMillisecondsSinceEpoch(lastInValue);
@@ -220,9 +236,10 @@ obx_int.ModelDefinition getObjectBoxModel() {
               ? null
               : DateTime.fromMillisecondsSinceEpoch(lastOutValue);
           final activeInParam =
-              const fb.BoolReader().vTableGet(buffer, rootOffset, 12, false);
+              const fb.BoolReader().vTableGet(buffer, rootOffset, 14, false);
           final object = ResPartnerModel(
               id: idParam,
+              uuid: uuidParam,
               name: nameParam,
               lastIn: lastInParam,
               lastOut: lastOutParam,
@@ -239,12 +256,15 @@ obx_int.ModelDefinition getObjectBoxModel() {
           object.id = id;
         },
         objectToFB: (ResPartnerTimestamp object, fb.Builder fbb) {
+          final uuidOffset = fbb.writeString(object.uuid);
+          final partnerIdOffset = fbb.writeString(object.partnerId);
           final typeOffset = fbb.writeString(object.type);
-          fbb.startTable(5);
+          fbb.startTable(6);
           fbb.addInt64(0, object.id);
-          fbb.addInt64(1, object.partnerId);
-          fbb.addInt64(2, object.timestamp.millisecondsSinceEpoch);
-          fbb.addOffset(3, typeOffset);
+          fbb.addOffset(1, uuidOffset);
+          fbb.addOffset(2, partnerIdOffset);
+          fbb.addInt64(3, object.timestamp.millisecondsSinceEpoch);
+          fbb.addOffset(4, typeOffset);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -253,14 +273,17 @@ obx_int.ModelDefinition getObjectBoxModel() {
           final rootOffset = buffer.derefObject(0);
           final idParam =
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
-          final partnerIdParam =
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 6, 0);
+          final uuidParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 6, '');
+          final partnerIdParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 8, '');
           final timestampParam = DateTime.fromMillisecondsSinceEpoch(
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0));
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 10, 0));
           final typeParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGet(buffer, rootOffset, 10, '');
+              .vTableGet(buffer, rootOffset, 12, '');
           final object = ResPartnerTimestamp(
               id: idParam,
+              uuid: uuidParam,
               partnerId: partnerIdParam,
               timestamp: timestampParam,
               type: typeParam);
@@ -287,7 +310,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
           fbb.addBool(3, object.sync);
           fbb.addOffset(4, actionOffset);
           fbb.addInt64(5, object.updateDate.millisecondsSinceEpoch);
-          fbb.addInt64(6, object.syncDate.millisecondsSinceEpoch);
+          fbb.addInt64(6, object.syncDate?.millisecondsSinceEpoch);
           fbb.addOffset(7, changesJsonOffset);
           fbb.finish(fbb.endTable());
           return object.id;
@@ -295,6 +318,8 @@ obx_int.ModelDefinition getObjectBoxModel() {
         objectFromFB: (obx.Store store, ByteData fbData) {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
+          final syncDateValue =
+              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 16);
           final idParam =
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
           final resModelParam = const fb.StringReader(asciiOptimization: true)
@@ -307,8 +332,9 @@ obx_int.ModelDefinition getObjectBoxModel() {
               .vTableGet(buffer, rootOffset, 12, '');
           final updateDateParam = DateTime.fromMillisecondsSinceEpoch(
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 14, 0));
-          final syncDateParam = DateTime.fromMillisecondsSinceEpoch(
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 16, 0));
+          final syncDateParam = syncDateValue == null
+              ? null
+              : DateTime.fromMillisecondsSinceEpoch(syncDateValue);
           final object = ResSyncState(
               id: idParam,
               resModel: resModelParam,
@@ -333,21 +359,25 @@ class ResPartnerModel_ {
   static final id =
       obx.QueryIntegerProperty<ResPartnerModel>(_entities[0].properties[0]);
 
+  /// See [ResPartnerModel.uuid].
+  static final uuid =
+      obx.QueryStringProperty<ResPartnerModel>(_entities[0].properties[1]);
+
   /// See [ResPartnerModel.name].
   static final name =
-      obx.QueryStringProperty<ResPartnerModel>(_entities[0].properties[1]);
+      obx.QueryStringProperty<ResPartnerModel>(_entities[0].properties[2]);
 
   /// See [ResPartnerModel.lastIn].
   static final lastIn =
-      obx.QueryDateProperty<ResPartnerModel>(_entities[0].properties[2]);
+      obx.QueryDateProperty<ResPartnerModel>(_entities[0].properties[3]);
 
   /// See [ResPartnerModel.lastOut].
   static final lastOut =
-      obx.QueryDateProperty<ResPartnerModel>(_entities[0].properties[3]);
+      obx.QueryDateProperty<ResPartnerModel>(_entities[0].properties[4]);
 
   /// See [ResPartnerModel.activeIn].
   static final activeIn =
-      obx.QueryBooleanProperty<ResPartnerModel>(_entities[0].properties[4]);
+      obx.QueryBooleanProperty<ResPartnerModel>(_entities[0].properties[5]);
 }
 
 /// [ResPartnerTimestamp] entity fields to define ObjectBox queries.
@@ -356,17 +386,21 @@ class ResPartnerTimestamp_ {
   static final id =
       obx.QueryIntegerProperty<ResPartnerTimestamp>(_entities[1].properties[0]);
 
+  /// See [ResPartnerTimestamp.uuid].
+  static final uuid =
+      obx.QueryStringProperty<ResPartnerTimestamp>(_entities[1].properties[1]);
+
   /// See [ResPartnerTimestamp.partnerId].
   static final partnerId =
-      obx.QueryIntegerProperty<ResPartnerTimestamp>(_entities[1].properties[1]);
+      obx.QueryStringProperty<ResPartnerTimestamp>(_entities[1].properties[2]);
 
   /// See [ResPartnerTimestamp.timestamp].
   static final timestamp =
-      obx.QueryDateProperty<ResPartnerTimestamp>(_entities[1].properties[2]);
+      obx.QueryDateProperty<ResPartnerTimestamp>(_entities[1].properties[3]);
 
   /// See [ResPartnerTimestamp.type].
   static final type =
-      obx.QueryStringProperty<ResPartnerTimestamp>(_entities[1].properties[3]);
+      obx.QueryStringProperty<ResPartnerTimestamp>(_entities[1].properties[4]);
 }
 
 /// [ResSyncState] entity fields to define ObjectBox queries.

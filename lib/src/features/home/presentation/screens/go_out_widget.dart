@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../core/connectivity_service.dart';
+import '../../../../core/sync_service.dart';
 import '../../domain/entities/res_partner_model.dart';
 import '../blocs/res_partner_provider.dart';
 import '../widgets/custom_appbar.dart';
@@ -18,12 +20,14 @@ class GoOutWidget extends StatefulWidget {
 
 class _GoOutWidgetState extends State<GoOutWidget> {
   late final TextEditingController _nameController = TextEditingController();
-
+  final SyncService syncService = SyncService();
+  bool isSyncing = false;
   DateTime? lastCheckIn;
 
   @override
   Widget build(BuildContext context) {
     final partnerProvider = Provider.of<ResPartnerProvider>(context);
+    final connectionProvider = Provider.of<ConnectivityService>(context);
 
     return Scaffold(
       appBar: const CustomAppBar(title: 'Offline First'),
@@ -78,7 +82,8 @@ class _GoOutWidgetState extends State<GoOutWidget> {
               onPressed: () {
                 final partner = partnerProvider.partners.firstWhere(
                   (p) => p.name == _nameController.text,
-                  orElse: () => ResPartnerModel(name: '', activeIn: false),
+                  orElse: () =>
+                      ResPartnerModel(uuid: '', name: '', activeIn: false),
                 );
 
                 if (partner.id != 0 && partner.activeIn) {
@@ -105,10 +110,34 @@ class _GoOutWidgetState extends State<GoOutWidget> {
             SizedBox(height: 20),
             CustomButton(
               label: 'Sincronizar',
-              onPressed: () async {
-                partnerProvider.removeSyncState();
+              onPressed: () {
+                () async {
+                  try {
+                    if (connectionProvider.isConnected) {
+                      await syncService.syncToSupabase();
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content: Text('✅ Sincronización completada.')),
+                      );
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content: Text('❌ No hay conexión a Internet.')),
+                      );
+                    }
+                  } catch (e) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                          content:
+                              Text('❌ Error durante la sincronización: $e')),
+                    );
+                  } finally {
+                    setState(() => isSyncing = false);
+                  }
+                }();
               },
-            ),
+            )
           ],
         ),
       ),

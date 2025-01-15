@@ -13,7 +13,7 @@ class ResSyncState {
   @Property(type: PropertyType.date)
   DateTime updateDate;
   @Property(type: PropertyType.date)
-  DateTime syncDate;
+  DateTime? syncDate;
 
   @Property()
   String changesJson = '';
@@ -32,7 +32,7 @@ class ResSyncState {
     required this.sync,
     required this.action,
     required this.updateDate,
-    required this.syncDate,
+    this.syncDate,
     Map<String, dynamic>? changes,
   }) : changesJson = jsonEncode(changes ?? {});
 }

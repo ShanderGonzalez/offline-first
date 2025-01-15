@@ -41,6 +41,11 @@ class MyHomePage extends StatelessWidget {
               label: 'Remover todos los partners',
               onPressed: partnerProvider.removeAllPartners,
             ),
+            const SizedBox(height: 20),
+            CustomButton(
+              label: 'Listar los partners',
+              onPressed: partnerProvider.fetchPartners,
+            ),
           ],
         ),
       ),

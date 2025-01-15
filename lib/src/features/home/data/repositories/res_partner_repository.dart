@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:uuid/uuid.dart';
+
 import '../../../../../main.dart';
 import '../../domain/data/objectbox.g.dart';
 import '../../domain/entities/res_partner_model.dart';
@@ -21,32 +23,32 @@ class ResPartnerRepositoryObjectBox implements ResPartnerRepository {
   final partnerBox = objectbox.store.box<ResPartnerModel>();
   final timestampBox = objectbox.store.box<ResPartnerTimestamp>();
   final syncStateBox = objectbox.store.box<ResSyncState>();
+  final uuid = Uuid();
 
   @override
   int createPartner(String name) {
-    // Verificar si ya existe un registro con el mismo nombre
-    final existingPartner = partnerBox
-        .query(ResPartnerModel_.name.equals(name))
-        .build()
-        .findFirst();
+    final existingPartnerQuery =
+        partnerBox.query(ResPartnerModel_.name.equals(name)).build();
+    final existingPartner = existingPartnerQuery.findFirst();
 
     if (existingPartner != null) {
       log('Ya existe un partner con el nombre $name');
       return -1;
     }
 
-    final partner = ResPartnerModel(name: name, activeIn: false);
+    final partner =
+        ResPartnerModel(uuid: uuid.v4(), name: name, activeIn: false);
     final partnerId = partnerBox.put(partner);
 
     final syncState = ResSyncState(
       resModel: 'res.partner',
-      resId: partnerId.toString(),
+      resId: partner.uuid.toString(),
       sync: false,
       action: 'create',
       updateDate: DateTime.now(),
-      syncDate: DateTime.now(),
       changes: {
-        'name': name,
+        'uuid': partner.uuid,
+        'name': partner.name,
         'activeIn': partner.activeIn.toString(),
       },
     );
@@ -57,126 +59,110 @@ class ResPartnerRepositoryObjectBox implements ResPartnerRepository {
   @override
   void checkInPartner(int partnerId) {
     final partner = partnerBox.get(partnerId);
-    if (partner != null) {
-      partner.lastIn = DateTime.now();
-      partner.activeIn = true;
-      partnerBox.put(partner);
+    if (partner == null) return;
 
-      // Crear un nuevo timestamp
-      final timestamp = ResPartnerTimestamp(
-        partnerId: partnerId,
-        timestamp: DateTime.now(),
-        type: 'IN',
-      );
-      timestampBox.put(timestamp);
+    partner.lastIn = DateTime.now();
+    partner.activeIn = true;
+    partnerBox.put(partner);
 
-      // Guardar en SyncState el cambio en ResPartnerModel
-      final existingSyncStatePartner = syncStateBox
-          .query(ResSyncState_.resId
-              .equals(partnerId.toString())
-              .and(ResSyncState_.resModel.equals('res.partner')))
-          .build()
-          .findFirst();
+    final resPartner = ResSyncState(
+      resModel: 'res.partner',
+      resId: partner.uuid.toString(),
+      sync: false,
+      action: 'update',
+      updateDate: DateTime.now(),
+      changes: {
+        'lastIn': partner.lastIn.toString(),
+        'activeIn': partner.activeIn.toString(),
+      },
+    );
+    syncStateBox.put(resPartner);
 
-      if (existingSyncStatePartner != null) {
-        existingSyncStatePartner.changes = {
-          'lastIn': partner.lastIn.toString(),
-          'activeIn': partner.activeIn.toString(),
-        };
-        existingSyncStatePartner.updateDate = DateTime.now();
-        existingSyncStatePartner.sync = false;
-        existingSyncStatePartner.action = 'update';
-        syncStateBox.put(existingSyncStatePartner);
-      }
+    final timestamp = ResPartnerTimestamp(
+      uuid: uuid.v4(),
+      partnerId: partner.uuid.toString(),
+      timestamp: DateTime.now(),
+      type: 'IN',
+    );
+    timestampBox.put(timestamp);
 
-      // Guardar en SyncState el cambio en ResPartnerTimestamp
-      final syncStateTimestamp = ResSyncState(
-        resModel: 'res.partner.timestamp',
-        resId: timestamp.id.toString(),
-        sync: false,
-        action: 'create',
-        updateDate: DateTime.now(),
-        syncDate: DateTime.now(),
-        changes: {
-          'partnerId': timestamp.partnerId.toString(),
-          'timestamp': timestamp.timestamp.toString(),
-          'type': timestamp.type,
-        },
-      );
-      syncStateBox.put(syncStateTimestamp);
-    }
+    final syncStateTimestamp = ResSyncState(
+      resModel: 'res.partner.timestamp',
+      resId: timestamp.uuid.toString(),
+      sync: false,
+      action: 'create',
+      updateDate: DateTime.now(),
+      changes: {
+        'uuid': timestamp.uuid.toString(),
+        'partnerId': partner.uuid.toString(),
+        'timestamp': timestamp.timestamp.toString(),
+        'type': timestamp.type,
+      },
+    );
+    syncStateBox.put(syncStateTimestamp);
   }
 
   @override
   void checkOutPartner(int partnerId) {
     final partner = partnerBox.get(partnerId);
-    if (partner != null) {
-      partner.lastOut = DateTime.now();
-      partner.activeIn = false;
-      partnerBox.put(partner);
+    if (partner == null) return;
 
-      // Crear un nuevo timestamp
-      final timestamp = ResPartnerTimestamp(
-        partnerId: partnerId,
-        timestamp: DateTime.now(),
-        type: 'OUT',
-      );
-      timestampBox.put(timestamp);
+    partner.lastOut = DateTime.now();
+    partner.activeIn = false;
+    partnerBox.put(partner);
 
-      // Guardar en SyncState el cambio en ResPartnerModel
-      final existingSyncStatePartner = syncStateBox
-          .query(ResSyncState_.resId
-              .equals(partnerId.toString())
-              .and(ResSyncState_.resModel.equals('res.partner')))
-          .build()
-          .findFirst();
+    final resPartner = ResSyncState(
+      resModel: 'res.partner',
+      resId: partner.uuid.toString(),
+      sync: false,
+      action: 'update',
+      updateDate: DateTime.now(),
+      changes: {
+        'lastOut': partner.lastOut.toString(),
+        'activeIn': partner.activeIn.toString(),
+      },
+    );
+    syncStateBox.put(resPartner);
 
-      if (existingSyncStatePartner != null) {
-        existingSyncStatePartner.changes = {
-          'lastOut': partner.lastOut.toString(),
-          'activeIn': partner.activeIn.toString(),
-        };
-        existingSyncStatePartner.updateDate = DateTime.now();
-        existingSyncStatePartner.sync = false;
-        existingSyncStatePartner.action = 'update';
-        syncStateBox.put(existingSyncStatePartner);
-      }
+    final timestamp = ResPartnerTimestamp(
+      uuid: uuid.v4(),
+      partnerId: partner.uuid.toString(),
+      timestamp: DateTime.now(),
+      type: 'OUT',
+    );
+    timestampBox.put(timestamp);
 
-      // Guardar en SyncState el cambio en ResPartnerTimestamp
-      final syncStateTimestamp = ResSyncState(
-        resModel: 'res.partner.timestamp',
-        resId: timestamp.id.toString(),
-        sync: false,
-        action: 'create',
-        updateDate: DateTime.now(),
-        syncDate: DateTime.now(),
-        changes: {
-          'partnerId': timestamp.partnerId.toString(),
-          'timestamp': timestamp.timestamp.toString(),
-          'type': timestamp.type,
-        },
-      );
-      syncStateBox.put(syncStateTimestamp);
-    }
+    final syncStateTimestamp = ResSyncState(
+      resModel: 'res.partner.timestamp',
+      resId: timestamp.uuid.toString(),
+      sync: false,
+      action: 'create',
+      updateDate: DateTime.now(),
+      changes: {
+        'uuid': timestamp.uuid.toString(),
+        'partnerId': partner.uuid.toString(),
+        'timestamp': timestamp.timestamp.toString(),
+        'type': timestamp.type,
+      },
+    );
+    syncStateBox.put(syncStateTimestamp);
   }
 
   @override
-  List<ResPartnerModel> getAllPartners() {
-    return partnerBox.getAll();
-  }
+  List<ResPartnerModel> getAllPartners() => partnerBox.getAll();
 
   @override
   List<ResPartnerTimestamp> getTimestampsByPartnerId(int partnerId) {
+    final partner = partnerBox.get(partnerId);
+    if (partner == null) return [];
     return timestampBox
-        .getAll()
-        .where((t) => t.partnerId == partnerId)
-        .toList();
+        .query(ResPartnerTimestamp_.partnerId.equals(partner.uuid.toString()))
+        .build()
+        .find();
   }
 
   @override
-  List<ResSyncState> getAllSyncStates() {
-    return syncStateBox.getAll();
-  }
+  List<ResSyncState> getAllSyncStates() => syncStateBox.getAll();
 
   @override
   void removeAllPartners() {
@@ -186,7 +172,5 @@ class ResPartnerRepositoryObjectBox implements ResPartnerRepository {
   }
 
   @override
-  void removeSyncState() {
-    syncStateBox.removeAll();
-  }
+  void removeSyncState() => syncStateBox.removeAll();
 }
