@@ -132,8 +132,6 @@ class _GoOutWidgetState extends State<GoOutWidget> {
                           content:
                               Text('❌ Error durante la sincronización: $e')),
                     );
-                  } finally {
-                    setState(() => isSyncing = false);
                   }
                 }();
               },
